@@ -1,0 +1,35 @@
+{
+    "schemaVersion": 1,
+    "id": "windy",
+    "version": "${version}",
+    "name": "Windy",
+    "description": "Wind particle from Breezy mod",
+    "authors": [
+        "MeiNanziiii"
+    ],
+    "contact": {
+        "homepage": "https://modrinth.com/mod/windy",
+        "sources": "https://github.com/MeiNanziiii/Windy",
+        "issues": "https://github.com/MeiNanziiii/Windy/issues"
+    },
+    "license": "LGPL-3.0",
+    "icon": "assets/windy/icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "ua.mei.windy.WindyMod"
+        ],
+        "modmenu": [
+            "ua.mei.windy.config.ModMenuIntegration"
+        ]
+    },
+    "mixins": [
+        "windy.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": "*",
+        "fabric": "*",
+        "minecraft": ">=${minecraft_version}",
+        "yet_another_config_lib_v3": "*"
+    }
+}

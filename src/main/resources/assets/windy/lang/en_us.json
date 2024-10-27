@@ -1,0 +1,14 @@
+{
+    "yacl3.config.windy:config.category.general": "General",
+
+    "yacl3.config.windy:config.category.general.group.particles": "Particles",
+    "yacl3.config.windy:config.category.general.group.frequency": "Frequency",
+
+    "yacl3.config.windy:config.shouldDisplayWind": "Should Display Wind",
+    "yacl3.config.windy:config.minimumWindHeight": "Minimum Wind Height",
+    "yacl3.config.windy:config.windMustSeeSky": "Wind Must See Sky",
+
+    "yacl3.config.windy:config.lowWindFrequency": "Low Wind Frequency",
+    "yacl3.config.windy:config.mediumWindFrequency": "Medium Wind Frequency",
+    "yacl3.config.windy:config.highWindFrequency": "High Wind Frequency"
+}
