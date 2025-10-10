@@ -5,22 +5,22 @@
     "name": "Windy",
     "description": "Wind particle from Breezy mod",
     "authors": [
-        "MeiNanziiii"
+        "BonfireMC"
     ],
     "contact": {
         "homepage": "https://modrinth.com/mod/windy",
-        "sources": "https://github.com/MeiNanziiii/Windy",
-        "issues": "https://github.com/MeiNanziiii/Windy/issues"
+        "sources": "https://github.com/BonfireMC/Windy",
+        "issues": "https://github.com/BonfireMC/Windy/issues"
     },
     "license": "LGPL-3.0",
     "icon": "assets/windy/icon.png",
     "environment": "client",
     "entrypoints": {
         "client": [
-            "ua.mei.windy.WindyMod"
+            "xyz.bonfiremc.windy.WindyMod"
         ],
         "modmenu": [
-            "ua.mei.windy.config.ModMenuIntegration"
+            "xyz.bonfiremc.windy.config.ModMenuIntegration"
         ]
     },
     "mixins": [
