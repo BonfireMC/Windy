@@ -23,7 +23,7 @@ public abstract class ClientWorldMixin {
         if (config.windMustSeeSky && !world.isSkyVisible(pos)) return;
 
         if (random.nextDouble() * 100 <= config.windFrequency * 0.015) {
-            world.addParticle(
+            world.addParticleClient(
                     WindyParticles.WIND,
                     pos.getX() + random.nextDouble(),
                     pos.getY() + random.nextDouble(),

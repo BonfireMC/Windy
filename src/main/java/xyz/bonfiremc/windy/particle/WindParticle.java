@@ -1,16 +1,18 @@
 package xyz.bonfiremc.windy.particle;
 
-import net.minecraft.client.particle.*;
+import net.minecraft.client.particle.BillboardParticle;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleFactory;
+import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.util.math.random.Random;
 
-import java.util.Random;
-
-public class WindParticle extends SpriteBillboardParticle {
+public class WindParticle extends BillboardParticle {
     private final SpriteProvider sprites;
 
     public WindParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider sprites) {
-        super(world, x, y, z, velocityX, velocityY, velocityZ);
+        super(world, x, y, z, velocityX, velocityY, velocityZ, sprites.getFirst());
 
         this.collidesWithWorld = true;
         this.maxAge = 50;
@@ -18,7 +20,7 @@ public class WindParticle extends SpriteBillboardParticle {
         this.scale(50.5F);
         this.setAlpha(0.5F);
         this.setPos(x, y, z);
-        this.setSpriteForAge(sprites);
+        this.updateSprite(sprites);
 
         this.sprites = sprites;
     }
@@ -26,19 +28,17 @@ public class WindParticle extends SpriteBillboardParticle {
     @Override
     public void tick() {
         super.tick();
-        this.setSpriteForAge(this.sprites);
+        this.updateSprite(this.sprites);
     }
 
     @Override
-    public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
+    protected RenderType getRenderType() {
+        return RenderType.PARTICLE_ATLAS_TRANSLUCENT;
     }
 
     public record Factory(SpriteProvider sprites) implements ParticleFactory<SimpleParticleType> {
         @Override
-        public Particle createParticle(SimpleParticleType parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            Random random = new Random();
-
+        public Particle createParticle(SimpleParticleType parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, Random random) {
             int distance = random.nextInt(30) + 40;
             double angle = random.nextDouble() * Math.PI * 2;
             double newY = y + random.nextInt(15) + random.nextInt(15);
