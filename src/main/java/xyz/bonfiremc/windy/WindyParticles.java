@@ -7,10 +7,10 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import xyz.bonfiremc.windy.particle.WindParticle;
 
-import static xyz.bonfiremc.windy.WindyMod.id;
+import static xyz.bonfiremc.windy.WindyMod.asResource;
 
 public class WindyParticles {
-    public static SimpleParticleType WIND = Registry.register(BuiltInRegistries.PARTICLE_TYPE, id("wind"), FabricParticleTypes.simple());
+    public static SimpleParticleType WIND = Registry.register(BuiltInRegistries.PARTICLE_TYPE, asResource("wind"), FabricParticleTypes.simple());
 
     public static void init() {
         ParticleFactoryRegistry.getInstance().register(WIND, WindParticle.Factory::new);

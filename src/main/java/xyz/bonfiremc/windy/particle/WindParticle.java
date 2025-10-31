@@ -3,18 +3,14 @@ package xyz.bonfiremc.windy.particle;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.RandomSource;
 import org.jetbrains.annotations.NotNull;
-//? if 1.21.9 {
-/*import net.minecraft.util.RandomSource;
-*///?} else {
-import java.util.Random;
-//?}
 
-public class WindParticle extends /*? if 1.21.9 {*//*SingleQuadParticle *//*?} else {*/TextureSheetParticle/*?}*/ {
+public class WindParticle extends /*? if >=1.21.9 {*//*SingleQuadParticle *//*?} else {*/TextureSheetParticle/*?}*/ {
     private final SpriteSet sprites;
 
     public WindParticle(ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteSet sprites) {
-        super(world, x, y, z, velocityX, velocityY, velocityZ/*? if 1.21.9 {*//*, sprites.first()*//*?}*/);
+        super(world, x, y, z, velocityX, velocityY, velocityZ/*? if >=1.21.9 {*//*, sprites.first()*//*?}*/);
 
         this.hasPhysics = true;
         this.lifetime = 50;
@@ -33,25 +29,22 @@ public class WindParticle extends /*? if 1.21.9 {*//*SingleQuadParticle *//*?} e
         this.setSpriteFromAge(this.sprites);
     }
 
-    //? if 1.21 {
     @Override
+            //? if >=1.21.9 {
+    /*protected @NotNull Layer getLayer() {
+        return Layer.TRANSLUCENT;
+    }
+    *///?} else {
     public @NotNull ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
     //?}
 
-    //? if 1.21.9 {
-    /*@Override
-    protected @NotNull Layer getLayer() {
-        return Layer.TRANSLUCENT;
-    }
-    *///?}
-
     public record Factory(SpriteSet sprites) implements ParticleProvider<SimpleParticleType> {
         @Override
-        public Particle createParticle(SimpleParticleType parameters, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ/*? if 1.21.9 {*//*, RandomSource random *//*?}*/) {
-            //? if 1.21 {
-            Random random = new Random();
+        public Particle createParticle(SimpleParticleType parameters, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ/*? if >=1.21.9 {*//*, RandomSource random *//*?}*/) {
+            //? if <1.21.9 {
+            RandomSource random = world.random;
             //?}
             int distance = random.nextInt(30) + 40;
             double angle = random.nextDouble() * Math.PI * 2;

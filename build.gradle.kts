@@ -16,7 +16,8 @@ modstitch {
     javaVersion = 21
 
     parchment {
-        prop("deps.parchment") { mappingsVersion = it }
+        prop("parchment.minecraft") { minecraftVersion = it }
+        prop("parchment.version") { mappingsVersion = it }
     }
 
     metadata {
@@ -71,7 +72,20 @@ dependencies {
         else -> ""
     }
 
-    prop("deps.yacl") { modstitchModImplementation("dev.isxander:yet-another-config-lib:$it-$platform") }
+    prop("deps.yacl") {
+        val url: String = when {
+            minecraft == "1.20" -> "dev.isxander.yacl:yet-another-config-lib-$platform:$it"
+            else -> "dev.isxander:yet-another-config-lib:$it-$platform"
+        }
+
+        modstitchModImplementation(url) {
+            if (minecraft == "1.20") {
+                // 3.10.0-SNAPSHOT no longer available
+                exclude(group = "com.twelvemonkeys.imageio")
+                exclude(group = "com.twelvemonkeys.common")
+            }
+        }
+    }
 
     modstitch.loom {
         prop("deps.fabric") { modstitchModImplementation("net.fabricmc.fabric-api:fabric-api:$it") }
