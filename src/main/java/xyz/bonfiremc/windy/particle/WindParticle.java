@@ -6,11 +6,11 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
 import org.jetbrains.annotations.NotNull;
 
-public class WindParticle extends /*? if >=1.21.9 {*//*SingleQuadParticle *//*?} else {*/TextureSheetParticle/*?}*/ {
+public class WindParticle extends /*? >=1.21.9 {*//*SingleQuadParticle *//*?} else {*/TextureSheetParticle/*?}*/ {
     private final SpriteSet sprites;
 
     public WindParticle(ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteSet sprites) {
-        super(world, x, y, z, velocityX, velocityY, velocityZ/*? if >=1.21.9 {*//*, sprites.first()*//*?}*/);
+        super(world, x, y, z, velocityX, velocityY, velocityZ/*? >=1.21.9 {*//*, sprites.first()*//*?}*/);
 
         this.hasPhysics = true;
         this.lifetime = 50;
@@ -30,7 +30,7 @@ public class WindParticle extends /*? if >=1.21.9 {*//*SingleQuadParticle *//*?}
     }
 
     @Override
-            //? if >=1.21.9 {
+    //? >=1.21.9 {
     /*protected @NotNull Layer getLayer() {
         return Layer.TRANSLUCENT;
     }
@@ -42,10 +42,11 @@ public class WindParticle extends /*? if >=1.21.9 {*//*SingleQuadParticle *//*?}
 
     public record Factory(SpriteSet sprites) implements ParticleProvider<SimpleParticleType> {
         @Override
-        public Particle createParticle(SimpleParticleType parameters, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ/*? if >=1.21.9 {*//*, RandomSource random *//*?}*/) {
-            //? if <1.21.9 {
+        public Particle createParticle(SimpleParticleType parameters, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ/*? >=1.21.9 {*//*, RandomSource random *//*?}*/) {
+            //? <1.21.9 {
             RandomSource random = world.random;
             //?}
+
             int distance = random.nextInt(30) + 40;
             double angle = random.nextDouble() * Math.PI * 2;
             double newY = y + random.nextInt(15) + random.nextInt(15);

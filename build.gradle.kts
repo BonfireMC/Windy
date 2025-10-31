@@ -11,9 +11,15 @@ val windyVersion = property("mod_version") as String
 val minecraft = property("deps.minecraft") as String
 val packFormat = property("pack.format") as String
 
+val windyPlatform: String = when {
+    modstitch.isLoom -> "fabric"
+    modstitch.isModDevGradleRegular -> "neoforge"
+    modstitch.isModDevGradleLegacy -> "forge"
+    else -> ""
+}
+
 modstitch {
     minecraftVersion = minecraft
-    javaVersion = 21
 
     parchment {
         prop("parchment.minecraft") { minecraftVersion = it }
@@ -23,13 +29,13 @@ modstitch {
     metadata {
         modId = "windy"
         modName = "Windy"
-        modVersion = "$windyVersion+$minecraft"
+        modVersion = "$windyVersion+$minecraft-$windyPlatform"
         modGroup = "xyz.bonfiremc"
         modAuthor = "BonfireMC"
         modLicense = "LGPL-3.0"
 
         replacementProperties.put("pack_format", packFormat)
-        replacementProperties.put("mod_version_short", windyVersion)
+        replacementProperties.put("github", "https://github.com/BonfireMC/Windy")
 
         prop("meta.mc") { replacementProperties.put("mc", it) }
     }
@@ -65,17 +71,10 @@ modstitch {
 }
 
 dependencies {
-    val platform: String = when {
-        modstitch.isLoom -> "fabric"
-        modstitch.isModDevGradleRegular -> "neoforge"
-        modstitch.isModDevGradleLegacy -> "forge"
-        else -> ""
-    }
-
     prop("deps.yacl") {
         val url: String = when {
-            minecraft == "1.20" -> "dev.isxander.yacl:yet-another-config-lib-$platform:$it"
-            else -> "dev.isxander:yet-another-config-lib:$it-$platform"
+            minecraft == "1.20" -> "dev.isxander.yacl:yet-another-config-lib-$windyPlatform:$it"
+            else -> "dev.isxander:yet-another-config-lib:$it-$windyPlatform"
         }
 
         modstitchModImplementation(url) {
@@ -83,6 +82,10 @@ dependencies {
                 // 3.10.0-SNAPSHOT no longer available
                 exclude(group = "com.twelvemonkeys.imageio")
                 exclude(group = "com.twelvemonkeys.common")
+            }
+
+            if (modstitch.isModDevGradleRegular) {
+                exclude(group = "thedarkcolour", module = "kotlinforforge-neoforge")
             }
         }
     }

@@ -2,11 +2,16 @@
     "schemaVersion": 1,
     "id": "${mod_id}",
     "name": "${mod_name}",
-    "version": "${mod_version_short}",
+    "version": "${mod_version}",
     "description": "${mod_description}",
     "authors": [
         "${mod_author}"
     ],
+    "contact": {
+        "homepage": "https://modrinth.com/mod/windy",
+        "sources": "${github}",
+        "issues": "${github}/issues"
+    },
     "license": "${mod_license}",
     "icon": "assets/windy/icon.png",
     "environment": "client",
