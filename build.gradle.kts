@@ -28,6 +28,7 @@ modstitch {
     metadata {
         modId = "windy"
         modName = "Windy"
+        modDescription = "Wind particle from Breezy mod"
         modVersion = "$windyVersion+$minecraft-$windyPlatform"
         modGroup = "xyz.bonfiremc"
         modAuthor = "BonfireMC"
