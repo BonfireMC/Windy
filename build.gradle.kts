@@ -101,3 +101,7 @@ stonecutter {
         put("neoforge", modstitch.isModDevGradleRegular)
     }
 }
+
+java {
+    withSourcesJar()
+}
