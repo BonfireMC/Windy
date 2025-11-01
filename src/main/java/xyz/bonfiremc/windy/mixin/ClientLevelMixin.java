@@ -3,7 +3,9 @@ package xyz.bonfiremc.windy.mixin;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -22,14 +24,26 @@ public abstract class ClientLevelMixin {
     public void windy$spawnWind(int posX, int posY, int posZ, int range, RandomSource random, Block block, BlockPos.MutableBlockPos blockPos, CallbackInfo ci) {
         ClientLevel world = (ClientLevel) (Object) this;
 
+        if (world.dimension() != Level.OVERWORLD) return;
+
         WindyConfig config = WindyConfig.HANDLER.instance();
 
         if (!config.spawnWind || blockPos.getY() < config.minimumWindHeight) return;
         if (config.windMustSeeSky && !world.canSeeSky(blockPos)) return;
 
         if (random.nextDouble() * 100 <= config.windFrequency * 0.015) {
+            SimpleParticleType particle = WindyParticles.WIND/*? neoforge {*//*.get()*//*?}*/;
+
+            if (world.isThundering()) {
+                if (random.nextDouble() <= 0.8) {
+                    particle = WindyParticles.STRONG_WIND/*? neoforge {*//*.get()*//*?}*/;
+                }
+            } else if (world.isRaining() && random.nextDouble() <= 0.5) {
+                particle = WindyParticles.STRONG_WIND/*? neoforge {*//*.get()*//*?}*/;
+            }
+
             this.addParticle(
-                    WindyParticles.WIND/*? neoforge {*//*.get()*//*?}*/,
+                    particle,
                     blockPos.getX() + random.nextDouble(),
                     blockPos.getY() + random.nextDouble(),
                     blockPos.getZ() + random.nextDouble(),

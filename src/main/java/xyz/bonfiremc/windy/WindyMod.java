@@ -47,6 +47,7 @@ public class WindyMod/*? fabric {*/ implements ClientModInitializer/*?}*/ {
     //? neoforge {
     /*public static void registerParticleProviders(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(WindyParticles.WIND.get(), WindParticle.Factory::new);
+        event.registerSpriteSet(WindyParticles.STRONG_WIND.get(), WindParticle.Factory::new);
     }
     *///?}
 }

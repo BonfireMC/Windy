@@ -23,10 +23,12 @@ public class WindyParticles {
     *///?}
 
     public static /*? neoforge {*//*Supplier<*//*?}*/SimpleParticleType/*? neoforge {*//*>*//*?}*/ WIND = /*? fabric {*/Registry.register(BuiltInRegistries.PARTICLE_TYPE, asResource("wind"), FabricParticleTypes.simple())/*?} else {*//*PARTICLE_TYPES.register("wind", () -> new SimpleParticleType(false))*//*?}*/;
+    public static /*? neoforge {*//*Supplier<*//*?}*/SimpleParticleType/*? neoforge {*//*>*//*?}*/ STRONG_WIND = /*? fabric {*/Registry.register(BuiltInRegistries.PARTICLE_TYPE, asResource("strong_wind"), FabricParticleTypes.simple())/*?} else {*//*PARTICLE_TYPES.register("strong_wind", () -> new SimpleParticleType(false))*//*?}*/;
 
     public static void init() {
         //? fabric {
         ParticleFactoryRegistry.getInstance().register(WIND, WindParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(STRONG_WIND, WindParticle.Factory::new);
         //?}
     }
 }
