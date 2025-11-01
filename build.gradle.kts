@@ -14,7 +14,6 @@ val packFormat = property("pack.format") as String
 val windyPlatform: String = when {
     modstitch.isLoom -> "fabric"
     modstitch.isModDevGradleRegular -> "neoforge"
-    modstitch.isModDevGradleLegacy -> "forge"
     else -> ""
 }
 
@@ -58,7 +57,6 @@ modstitch {
 
     moddevgradle {
         prop("deps.neoforge") { neoForgeVersion = it }
-        prop("deps.forge") { forgeVersion = it }
 
         defaultRuns()
     }
@@ -100,7 +98,5 @@ stonecutter {
     constants {
         put("fabric", modstitch.isLoom)
         put("neoforge", modstitch.isModDevGradleRegular)
-        put("forge", modstitch.isModDevGradleLegacy)
-        put("forgelike", modstitch.isModDevGradle)
     }
 }

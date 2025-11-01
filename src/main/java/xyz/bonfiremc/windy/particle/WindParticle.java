@@ -6,11 +6,11 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
 import org.jetbrains.annotations.NotNull;
 
-public class WindParticle extends /*? >=1.21.9 {*//*SingleQuadParticle *//*?} else {*/TextureSheetParticle/*?}*/ {
+public class WindParticle extends /*? >=1.21.9 {*/SingleQuadParticle /*?} else {*//*TextureSheetParticle*//*?}*/ {
     private final SpriteSet sprites;
 
     public WindParticle(ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteSet sprites) {
-        super(world, x, y, z, velocityX, velocityY, velocityZ/*? >=1.21.9 {*//*, sprites.first()*//*?}*/);
+        super(world, x, y, z, velocityX, velocityY, velocityZ/*? >=1.21.9 {*/, sprites.first()/*?}*/);
 
         this.hasPhysics = true;
         this.lifetime = 50;
@@ -31,21 +31,21 @@ public class WindParticle extends /*? >=1.21.9 {*//*SingleQuadParticle *//*?} el
 
     @Override
     //? >=1.21.9 {
-    /*protected @NotNull Layer getLayer() {
+    protected @NotNull Layer getLayer() {
         return Layer.TRANSLUCENT;
     }
-    *///?} else {
-    public @NotNull ParticleRenderType getRenderType() {
+    //?} else {
+    /*public @NotNull ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
-    //?}
+    *///?}
 
     public record Factory(SpriteSet sprites) implements ParticleProvider<SimpleParticleType> {
         @Override
-        public Particle createParticle(SimpleParticleType parameters, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ/*? >=1.21.9 {*//*, RandomSource random *//*?}*/) {
+        public Particle createParticle(@NotNull SimpleParticleType parameters, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ/*? >=1.21.9 {*/, RandomSource random /*?}*/) {
             //? <1.21.9 {
-            RandomSource random = world.random;
-            //?}
+            /*RandomSource random = world.random;
+            *///?}
 
             int distance = random.nextInt(30) + 40;
             double angle = random.nextDouble() * Math.PI * 2;

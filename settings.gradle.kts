@@ -26,7 +26,7 @@ stonecutter {
 
         mc("1.21.9", loaders = listOf("fabric", "neoforge"))
         mc("1.21", loaders = listOf("fabric", "neoforge"))
-        mc("1.20", loaders = listOf("fabric", "forge"))
+        mc("1.20", loaders = listOf("fabric"))
     }
 }
 

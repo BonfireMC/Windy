@@ -29,7 +29,7 @@ public abstract class ClientLevelMixin {
 
         if (random.nextDouble() * 100 <= config.windFrequency * 0.015) {
             this.addParticle(
-                    WindyParticles.WIND/*? forgelike {*/.get()/*?}*/,
+                    WindyParticles.WIND/*? neoforge {*//*.get()*//*?}*/,
                     blockPos.getX() + random.nextDouble(),
                     blockPos.getY() + random.nextDouble(),
                     blockPos.getZ() + random.nextDouble(),
