@@ -27,8 +27,8 @@ public class WindyParticles {
 
     public static void init() {
         //? fabric {
-        ParticleFactoryRegistry.getInstance().register(WIND, WindParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(STRONG_WIND, WindParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(WIND, WindParticle.Factory.lifetime(50));
+        ParticleFactoryRegistry.getInstance().register(STRONG_WIND, WindParticle.Factory.lifetime(25));
         //?}
     }
 }

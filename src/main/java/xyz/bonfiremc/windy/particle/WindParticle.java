@@ -1,5 +1,8 @@
 package xyz.bonfiremc.windy.particle;
 
+//? fabric {
+ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+//?}
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -9,11 +12,11 @@ import org.jetbrains.annotations.NotNull;
 public class WindParticle extends /*? >=1.21.9 {*/SingleQuadParticle /*?} else {*//*TextureSheetParticle*//*?}*/ {
     private final SpriteSet sprites;
 
-    public WindParticle(ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteSet sprites) {
+    public WindParticle(ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteSet sprites, int lifetime) {
         super(world, x, y, z, velocityX, velocityY, velocityZ/*? >=1.21.9 {*/, sprites.first()/*?}*/);
 
         this.hasPhysics = true;
-        this.lifetime = 50;
+        this.lifetime = lifetime;
 
         this.scale(50.5F);
         this.setAlpha(0.5F);
@@ -40,9 +43,13 @@ public class WindParticle extends /*? >=1.21.9 {*/SingleQuadParticle /*?} else {
     }
     *///?}
 
-    public record Factory(SpriteSet sprites) implements ParticleProvider<SimpleParticleType> {
+    public record Factory(SpriteSet sprites, int lifetime) implements ParticleProvider<SimpleParticleType> {
+        public static /*? fabric {*/ParticleFactoryRegistry.PendingParticleFactory/*?} else {*//*/^? >=1.21.9 {^/ParticleResources/^?} else {^//^ParticleEngine^//^?}^/.SpriteParticleRegistration*//*?}*/<SimpleParticleType> lifetime(int lifetime) {
+            return (sprites) -> new Factory(sprites, lifetime);
+        }
+
         @Override
-        public Particle createParticle(@NotNull SimpleParticleType parameters, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ/*? >=1.21.9 {*/, RandomSource random /*?}*/) {
+        public Particle createParticle(@NotNull SimpleParticleType parameters, @NotNull ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ/*? >=1.21.9 {*/, RandomSource random /*?}*/) {
             //? <1.21.9 {
             /*RandomSource random = world.random;
             *///?}
@@ -51,7 +58,7 @@ public class WindParticle extends /*? >=1.21.9 {*/SingleQuadParticle /*?} else {
             double angle = random.nextDouble() * Math.PI * 2;
             double newY = y + random.nextInt(15) + random.nextInt(15);
 
-            return new WindParticle(world, (Math.cos(angle) * distance) + x, newY, (Math.sin(angle) * distance) + z, velocityX, velocityY, velocityZ, this.sprites);
+            return new WindParticle(world, (Math.cos(angle) * distance) + x, newY, (Math.sin(angle) * distance) + z, velocityX, velocityY, velocityZ, this.sprites, lifetime);
         }
     }
 }

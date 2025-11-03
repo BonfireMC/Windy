@@ -31,16 +31,10 @@ public abstract class ClientLevelMixin {
         if (!config.spawnWind || blockPos.getY() < config.minimumWindHeight) return;
         if (config.windMustSeeSky && !world.canSeeSky(blockPos)) return;
 
-        if (random.nextDouble() * 100 <= config.windFrequency * 0.015) {
-            SimpleParticleType particle = WindyParticles.WIND/*? neoforge {*//*.get()*//*?}*/;
+        double multiplier = world.isThundering() ? 0.020 : 0.015;
 
-            if (world.isThundering()) {
-                if (random.nextDouble() <= 0.8) {
-                    particle = WindyParticles.STRONG_WIND/*? neoforge {*//*.get()*//*?}*/;
-                }
-            } else if (world.isRaining() && random.nextDouble() <= 0.5) {
-                particle = WindyParticles.STRONG_WIND/*? neoforge {*//*.get()*//*?}*/;
-            }
+        if (random.nextDouble() * 100 <= config.windFrequency * multiplier) {
+            SimpleParticleType particle = (world.isRaining() || world.isThundering() ? WindyParticles.STRONG_WIND : WindyParticles.WIND)/*? neoforge {*//*.get()*//*?}*/;
 
             this.addParticle(
                     particle,
