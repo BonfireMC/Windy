@@ -10,7 +10,7 @@ pluginManagement {
 }
 
 plugins {
-    id("dev.kikugie.stonecutter") version "0.7.10"
+    id("dev.kikugie.stonecutter") version "0.7.11"
 }
 
 stonecutter {
@@ -24,6 +24,7 @@ stonecutter {
             }
         }
 
+        mc("1.21.11", loaders = listOf("fabric"))
         mc("1.21.9", loaders = listOf("fabric", "neoforge"))
         mc("1.21", loaders = listOf("fabric", "neoforge"))
         mc("1.20", loaders = listOf("fabric"))

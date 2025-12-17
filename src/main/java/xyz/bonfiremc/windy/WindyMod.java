@@ -1,6 +1,10 @@
 package xyz.bonfiremc.windy;
 
-import net.minecraft.resources.ResourceLocation;
+//? <=1.21.9 {
+//import net.minecraft.resources.ResourceLocation;
+//?} else {
+import net.minecraft.resources.Identifier;
+//?}
 //? fabric {
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -20,8 +24,8 @@ import java.nio.file.Path;
 
 /*? neoforge {*//*@Mod("windy")*//*?}*/
 public class WindyMod/*? fabric {*/ implements ClientModInitializer/*?}*/ {
-    public static ResourceLocation asResource(String path) {
-        return /*? <1.21 {*//*new *//*?}*/ResourceLocation/*? >=1.21 {*/.fromNamespaceAndPath/*?}*/("windy", path);
+    public static /*? <=1.21.9 {*//*ResourceLocation*//*?} else {*/Identifier/*?}*/ asResource(String path) {
+        return /*? <1.21 {*//*new *//*?}*//*? <=1.21.9 {*//*ResourceLocation*//*?} else {*/Identifier/*?}*//*? >=1.21 {*/.fromNamespaceAndPath/*?}*/("windy", path);
     }
 
     /*? fabric {*/@Override/*?}*/

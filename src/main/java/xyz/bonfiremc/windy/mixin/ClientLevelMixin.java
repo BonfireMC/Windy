@@ -20,7 +20,7 @@ public abstract class ClientLevelMixin {
     @Shadow
     public abstract void addParticle(ParticleOptions particleData, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed);
 
-    @Inject(method = "doAnimateTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/ClientLevel;getBiome(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/Holder;"))
+    @Inject(method = "doAnimateTick", at = @At(value = "INVOKE", target = /*? <=1.21.9 {*//*"Lnet/minecraft/client/multiplayer/ClientLevel;getBiome(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/Holder;"*//*?} else {*/"Lnet/minecraft/client/multiplayer/ClientLevel;environmentAttributes()Lnet/minecraft/world/attribute/EnvironmentAttributeSystem;"/*?}*/))
     public void windy$spawnWind(int posX, int posY, int posZ, int range, RandomSource random, Block block, BlockPos.MutableBlockPos blockPos, CallbackInfo ci) {
         ClientLevel world = (ClientLevel) (Object) this;
 
