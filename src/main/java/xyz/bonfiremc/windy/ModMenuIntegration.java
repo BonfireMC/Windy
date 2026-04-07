@@ -1,4 +1,4 @@
-package xyz.bonfiremc.windy.config;
+package xyz.bonfiremc.windy;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;

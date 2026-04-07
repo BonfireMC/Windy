@@ -1,4 +1,4 @@
-package xyz.bonfiremc.windy.config;
+package xyz.bonfiremc.windy;
 
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;

@@ -1,12 +1,11 @@
 {
     "yacl3.config.windy:config.category.general": "General",
-
     "yacl3.config.windy:config.spawnWind": "Spawn Wind",
-    "yacl3.config.windy:config.spawnWind.desc": "Should wind be spawned?\n\nDefault: §aYes",
+    "yacl3.config.windy:config.spawnWind.desc": "Controls whether wind particles can spawn in the world.\n\nDefault: §aYes",
     "yacl3.config.windy:config.minimumWindHeight": "Minimum Wind Height",
-    "yacl3.config.windy:config.minimumWindHeight.desc": "At what height should wind be spawned?\n\nDefault: 83",
-    "yacl3.config.windy:config.windMustSeeSky": "Wind Must See Sky",
-    "yacl3.config.windy:config.windMustSeeSky.desc": "Should wind particles only spawn in blocks that have access to the sky?\n\nDefault: §aYes",
+    "yacl3.config.windy:config.minimumWindHeight.desc": "The minimum height at which wind particles can spawn.\n\nDefault: 83",
+    "yacl3.config.windy:config.windMustSeeSky": "Wind Requires Sky Access",
+    "yacl3.config.windy:config.windMustSeeSky.desc": "Controls whether wind particles can only spawn in locations with sky access.\n\nDefault: §aYes",
     "yacl3.config.windy:config.windFrequency": "Wind Frequency",
-    "yacl3.config.windy:config.windFrequency.desc": "At what frequency should wind be spawned?\n\nDefault: 1.0%"
+    "yacl3.config.windy:config.windFrequency.desc": "Controls how frequently wind particles spawn.\n\nDefault: 1.0%"
 }
