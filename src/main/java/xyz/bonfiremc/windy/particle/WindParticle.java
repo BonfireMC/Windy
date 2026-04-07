@@ -1,8 +1,8 @@
 package xyz.bonfiremc.windy.particle;
 
 //? fabric {
- import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-//?}
+ /*import net.fabricmc.fabric.api.client.particle.v1./^? <26.1 {^/ParticleFactoryRegistry/^?} else {^//^ParticleProviderRegistry^//^?}^/;
+*///?}
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -44,7 +44,7 @@ public class WindParticle extends /*? >=1.21.9 {*/SingleQuadParticle /*?} else {
     *///?}
 
     public record Factory(SpriteSet sprites, int lifetime) implements ParticleProvider<SimpleParticleType> {
-        public static /*? fabric {*/ParticleFactoryRegistry.PendingParticleFactory/*?} else {*//*/^? >=1.21.9 {^/ParticleResources/^?} else {^//^ParticleEngine^//^?}^/.SpriteParticleRegistration*//*?}*/<SimpleParticleType> lifetime(int lifetime) {
+        public static /*? fabric {*//*/^? <26.1 {^/ParticleFactoryRegistry.PendingParticleFactory/^?} else {^//^ParticleProviderRegistry.PendingParticleProvider^//^?}^/*//*?} else {*//*? >=1.21.9 {*/ParticleResources/*?} else {*//*ParticleEngine*//*?}*/.SpriteParticleRegistration/*?}*/<SimpleParticleType> lifetime(int lifetime) {
             return (sprites) -> new Factory(sprites, lifetime);
         }
 

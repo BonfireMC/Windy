@@ -34,7 +34,7 @@ public abstract class ClientLevelMixin {
         double multiplier = world.isThundering() ? 0.020 : 0.015;
 
         if (random.nextDouble() * 100 <= config.windFrequency * multiplier) {
-            SimpleParticleType particle = (world.isRaining() || world.isThundering() ? WindyParticles.STRONG_WIND : WindyParticles.WIND)/*? neoforge {*//*.get()*//*?}*/;
+            SimpleParticleType particle = (world.isRaining() || world.isThundering() ? WindyParticles.STRONG_WIND : WindyParticles.WIND)/*? neoforge {*/.get()/*?}*/;
 
             this.addParticle(
                     particle,

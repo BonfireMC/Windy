@@ -1,8 +1,8 @@
 plugins {
     id("dev.kikugie.stonecutter")
-    id("fabric-loom") version "1.13-SNAPSHOT" apply false
+    id("fabric-loom") version "1.15-SNAPSHOT" apply false
 }
-stonecutter active "1.21.11-fabric"
+stonecutter active "26.1-neoforge"
 
 allprojects {
     repositories {
