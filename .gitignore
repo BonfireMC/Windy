@@ -6,6 +6,7 @@ build/
 
 ### Minecraft ###
 run
+mcp/
 
 ### IntelliJ IDEA ###
 .idea
