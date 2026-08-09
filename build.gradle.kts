@@ -14,6 +14,7 @@ val packFormat = property("pack.format") as String
 val windyPlatform: String = when {
     modstitch.isLoom -> "fabric"
     modstitch.isModDevGradleRegular -> "neoforge"
+    modstitch.isModDevGradleLegacy -> "forge"
     else -> ""
 }
 
@@ -58,6 +59,7 @@ modstitch {
 
     moddevgradle {
         prop("deps.neoforge") { neoForgeVersion = it }
+        prop("deps.forge") { forgeVersion = it }
 
         defaultRuns()
     }
@@ -77,7 +79,7 @@ dependencies {
         }
 
         modstitchModImplementation(url) {
-            if (minecraft == "1.20") {
+            if (minecraft == "1.20" && modstitch.isLoom) {
                 // 3.10.0-SNAPSHOT no longer available
                 exclude(group = "com.twelvemonkeys.imageio")
                 exclude(group = "com.twelvemonkeys.common")
@@ -99,5 +101,6 @@ stonecutter {
     constants {
         put("fabric", modstitch.isLoom)
         put("neoforge", modstitch.isModDevGradleRegular)
+        put("forge", modstitch.isModDevGradleLegacy)
     }
 }
